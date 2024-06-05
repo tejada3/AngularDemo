@@ -10,8 +10,8 @@
 
 
 export const appRoutes: Routes = [
-
-  {path:'', component: HomeComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  {path:'home', component: HomeComponent},
   {path:'dashboard', component:DashboardComponent},
   {path:'stats', component:StatsComponent},
   {path:'postItem', component:PostItemComponent },
