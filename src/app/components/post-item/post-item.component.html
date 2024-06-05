@@ -1,0 +1,59 @@
+
+<form class="postItemForm">
+
+  <label for="exampleDataList" class="form-label-col-6">Category</label>
+    <input [(ngModel)]='it.Category' name="category" class="form-control" list="CategoryOptions" id="exampleDataList" placeholder="Type to search...">
+      <datalist id="CategoryOptions" >
+        <option value="Milk">
+        <option value="Eggs">
+        <option value="Bread">
+        <option value="Water">
+        <option value="Eggs">
+        <option value="Packaged Meats">
+        <option value="Cereal">
+        <option value="Salty Snacks">
+        <option value="Soda">
+        <option value="Peanut Butter & Jelly">
+      </datalist>
+
+    <div >
+      <label for="storeItemInput" class="form-label">Item</label>
+      <input type="text" class="form-control" id="storeItemInput" [(ngModel)]='it.storeItem' name="item">
+    </div>
+
+    <div >
+      <label for="storeNameInput" class="form-label">Store</label>
+      <input type="text" class="form-control" id="storeNameInput" [(ngModel)]='it.storeName' name="name">
+    </div>
+
+    <div >
+      <label for="TownInput" class="form-label">Town</label>
+      <input type="text" class="form-control" id="TownInput" [(ngModel)]='it.Town' name="town">
+    </div>
+
+    <div >
+      <label for="StateInput" class="form-label">State</label>
+      <input type="text" class="form-control" id="StateInput" [(ngModel)]='it.State' name="state">
+    </div>
+
+    <div >
+      <label for="ItemQuantityInput" class="form-label">Item Quantiy</label>
+      <input type="text" class="form-control" id="ItemQuantityInput" [(ngModel)]='it.itemQuantity' name="quantity">
+    </div>
+    <div >
+     <label for="ItemAmountInput" class="form-label">Item Amount</label>
+      <input type="text" class="form-control" id="ItemAmountInput" [(ngModel)]='it.itemAmount' name="amount">
+    </div>
+
+    <div >
+      <label for="PriceInput" class="form-label">Price</label>
+      <input type="text" class="form-control" id="PriceInput" [(ngModel)]='it.Price' name="price">
+    </div>
+
+  <button (click)="onSubmit()">
+    prees me
+  </button>
+
+  {{it | json}}
+
+</form>

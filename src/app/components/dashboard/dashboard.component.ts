@@ -1,6 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {KeyValuePipe, NgForOf} from "@angular/common";
+import {KeyValuePipe, NgForOf, UpperCasePipe} from "@angular/common";
+import {ItemService} from "../../services/items/item.service";
+import {Item} from "../../models/Item";
+import {ItemDetailComponent} from "./item-detail/item-detail.component";
+import { Router} from "@angular/router";
 
 
 @Component({
@@ -10,29 +14,30 @@ import {KeyValuePipe, NgForOf} from "@angular/common";
   styleUrl: './dashboard.component.css',
   imports: [
     NgForOf,
-    KeyValuePipe
+    KeyValuePipe,
+    UpperCasePipe,
+    ItemDetailComponent
   ],
-  providers: [HttpClient]
+  providers: [HttpClient, ItemService]
 })
 export class DashboardComponent implements OnInit{
-  public getDataValue: any;
-  constructor(private  http:HttpClient) {
+
+  items: Item[] = []
+
+
+
+  constructor(private  http:HttpClient, private ItemService: ItemService) { }
+
+  ngOnInit() {
+    this.displayEm()
   }
 
-  ngOnInit(): void{
-    this.getItemMethods()
+  public displayEm() {
+    this.ItemService.getItemMethods()
+    this.items = this.ItemService.itemss
+    console.log(this.items)
 
   }
 
-  public getItemMethods(){
-    this.http.get('https://tnifbs1kd5.execute-api.us-east-1.amazonaws.com/apiDeply/items').subscribe((data) => {
-
-      this.getDataValue = data
-
-
-      console.log(this.getDataValue['body'])
-      return JSON.parse(this.getDataValue['body'])
-    });
-                        }
 
 }

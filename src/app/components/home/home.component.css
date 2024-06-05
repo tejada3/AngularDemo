@@ -1,0 +1,10 @@
+.itemList{
+  width: 30%;
+}
+.list-group-item{
+  background-color: aqua;
+  margin-bottom: 9px;
+}
+.background{
+   background-image: url(/public/assets/background.jpg);
+}
