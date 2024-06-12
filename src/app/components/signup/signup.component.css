@@ -1,0 +1,10 @@
+.col-1{
+  width: 80%;
+  border-style: dot-dash;
+
+}
+
+.row{
+  place-content: center;
+
+}

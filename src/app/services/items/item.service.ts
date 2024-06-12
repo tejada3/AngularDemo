@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Item} from "../../models/Item";
+import {map} from "rxjs";
 
 
 @Injectable({
@@ -49,18 +50,36 @@ export class ItemService {
 
 
 
-  public getItemMethods() {
-    this.http
-      .get<Response>('https://tnifbs1kd5.execute-api.us-east-1.amazonaws.com/apiDeply/items')
-      .subscribe(response => {
-      this.getDataValue = response.body
-      let json_item = JSON.parse(this.getDataValue)
+  // public getItemMethods() {
+  //   this.http
+  //     .get<Response>('https://tnifbs1kd5.execute-api.us-east-1.amazonaws.com/apiDeply/items')
+  //     .subscribe(response => {
+  //     this.getDataValue = response.body
+  //     let json_item = JSON.parse(this.getDataValue)
+  //
+  //     for(let i of json_item){
+  //       this.itemss.push(i)
+  //     }
+  //   });
+  //                       }
 
-      for(let i of json_item){
+    public getItemMethods() {
+    this.http
+      .get<Item[]>('https://tnifbs1kd5.execute-api.us-east-1.amazonaws.com/apiDeply/items',{observe: 'body', responseType:'json'})
+      .subscribe(response=>{
+        this.getDataValue = response
+        let json_item = this.getDataValue.body
+        console.log(JSON.parse(json_item))
+
+         for(let i of JSON.parse(json_item)){
         this.itemss.push(i)
       }
-    });
-                        }
+        return JSON.parse(json_item)
+
+      }
+    )
+
+    }
 
   public getStats() {
     this.http.get<Response>('https://tnifbs1kd5.execute-api.us-east-1.amazonaws.com/apiDeply/items').subscribe(response => {

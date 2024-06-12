@@ -1,28 +1,41 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {Item} from "../../models/Item";
-import {JsonPipe} from "@angular/common";
+import {JsonPipe, NgIf} from "@angular/common";
 import {ItemService} from "../../services/items/item.service";
-import {HttpClient} from "@angular/common/http";
-import {AuthService} from "../../services/auth.service";
-import {AuthGaurd} from "../../auth-guard.service";
+
+
+import {RouterLink} from "@angular/router";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-post-item',
   standalone: true,
   imports: [
     FormsModule,
-    JsonPipe
+    JsonPipe,
+    NgIf,
+    RouterLink,
+
   ],
   templateUrl: './post-item.component.html',
   styleUrl: './post-item.component.css',
-  providers:[ItemService, AuthService, AuthGaurd]
+  providers:[ItemService, AuthService]
 })
-export class PostItemComponent {
+export class PostItemComponent implements OnInit{
+
+
+  isLoggedIn = false
+
+  ngOnInit(): void {
+    this.Logged()
+  }
 
   it = new Item('','', '', '', '', '', '', '')
 
-  constructor(private ItemService: ItemService) { }
+  constructor(private ItemService: ItemService) {
+
+  }
 
 
   onSubmit(){
@@ -30,6 +43,10 @@ export class PostItemComponent {
       console.log(this.it)
       this.ItemService.postItem(this.it)
 
+
+  }
+
+  Logged(){
 
   }
 

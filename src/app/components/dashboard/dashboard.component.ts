@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit{
   }
 
   public displayEm() {
-    this.ItemService.getItemMethods()
+    console.log(this.ItemService.getItemMethods())
     this.items = this.ItemService.itemss
     console.log(this.items)
 

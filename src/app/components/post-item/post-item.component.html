@@ -1,5 +1,7 @@
-
-<form class="postItemForm">
+<div>
+  <button *ngIf="!this.isLoggedIn" [routerLink]="['/login']">Select me to log in</button>
+</div>
+<form class="postItemForm" *ngIf="this.isLoggedIn">
 
   <label for="exampleDataList" class="form-label-col-6">Category</label>
     <input [(ngModel)]='it.Category' name="category" class="form-control" list="CategoryOptions" id="exampleDataList" placeholder="Type to search...">

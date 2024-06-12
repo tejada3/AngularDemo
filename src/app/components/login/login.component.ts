@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormsModule, NgForm} from "@angular/forms";
 import {AppComponent} from "../../app.component";
-import {AuthService} from "../../services/auth.service";
+
 import {Router} from "@angular/router";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -21,14 +22,6 @@ export class LoginComponent implements OnInit{
 
   onSubmit(form:NgForm){
 
-    if(this.auth.login(form.value['username'], form.value['password'])){
-
-      this.router.navigate(["postItem"]).then(r => {
-        console.log("successsly navigated after log in")
-      })
-
-    }else {
-      console.log("Username and password wrong")}
 
   }
 
